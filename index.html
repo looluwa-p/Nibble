@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff8f0">
+  <title>Nibble</title>
+  <link rel="icon" href="logo-apple.png">
+  <link rel="apple-touch-icon" href="4.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Nibble home">
+        <img class="brand__logo" src="logo-wordmark.png" alt="Nibble" width="900" height="238">
+      </a>
+      <p class="brand__tagline">Save food. Save money. Save the planet.</p>
+    </header>
+
+    <section class="intro" aria-labelledby="intro-title">
+      <div class="intro__text">
+        <h1 id="intro-title" class="intro__title">Use what you have before it goes to waste.</h1>
+        <p class="intro__lead">Track what's in your fridge, see what needs eating first, and find recipes that use it up. Anything you won't get to can go to a food bank or a neighbor instead.</p>
+      </div>
+      <dl class="stats" aria-label="Your impact so far">
+        <div class="stats__item">
+          <dt class="stats__label">Foods saved</dt>
+          <dd class="stats__value" id="stat-items">0</dd>
+        </div>
+        <div class="stats__item">
+          <dt class="stats__label">Money saved</dt>
+          <dd class="stats__value" id="stat-money">$0</dd>
+        </div>
+        <div class="stats__item">
+          <dt class="stats__label">Food rescued</dt>
+          <dd class="stats__value" id="stat-weight">0 lb</dd>
+        </div>
+      </dl>
+    </section>
+
+    <main class="layout">
+      <section class="panel fridge" aria-labelledby="fridge-title">
+        <div class="panel__header">
+          <h2 id="fridge-title" class="panel__title">Your fridge</h2>
+          <p class="panel__hint">Log your groceries and we'll sort them by what's going off first.</p>
+        </div>
+
+        <form id="add-form" class="add-form" novalidate>
+          <div class="field">
+            <label class="field__label" for="name">Food</label>
+            <div class="field__row">
+              <input id="name" class="input" placeholder="e.g. potatoes" autocomplete="off" required>
+              <button type="button" id="scan-btn" class="btn btn--secondary" aria-expanded="false" aria-controls="scan-panel">
+                Scan
+              </button>
+            </div>
+            <p id="name-error" class="field__error" hidden>Enter a food name.</p>
+          </div>
+
+          <div id="scan-panel" class="scan" hidden>
+            <p class="scan__title">Scan a barcode</p>
+            <label class="btn btn--secondary btn--block scan__photo">
+              Take a photo of the barcode
+              <input id="scan-photo" class="visually-hidden" type="file" accept="image/*" capture="environment">
+            </label>
+            <div class="field__row">
+              <label class="visually-hidden" for="barcode">Barcode number</label>
+              <input id="barcode" class="input" inputmode="numeric" autocomplete="off" placeholder="Or type the number">
+              <button type="button" id="barcode-btn" class="btn btn--secondary">Look up</button>
+            </div>
+            <p id="scan-status" class="scan__status" role="status" aria-live="polite"></p>
+          </div>
+
+          <div class="add-form__pair">
+            <div class="field">
+              <label class="field__label" for="expiry">Expires</label>
+              <input id="expiry" class="input" type="date" required>
+              <div class="quick-dates" role="group" aria-label="Quick expiry dates">
+                <button type="button" class="pill-btn" data-days="1" aria-pressed="false">Tomorrow</button>
+                <button type="button" class="pill-btn" data-days="3" aria-pressed="false">In 3 days</button>
+                <button type="button" class="pill-btn" data-days="7" aria-pressed="false">In a week</button>
+              </div>
+              <p id="expiry-error" class="field__error" hidden>Choose an expiry date.</p>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="price">Price <span class="field__optional">optional</span></label>
+              <div class="input-prefix">
+                <span aria-hidden="true">$</span>
+                <input id="price" class="input" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00">
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--block">Add to fridge</button>
+        </form>
+
+        <div class="inventory">
+          <div class="inventory__head">
+            <h3 class="inventory__title">In your fridge <span id="item-count" class="inventory__count"></span></h3>
+            <ul id="key" class="key" aria-label="Expiry key">
+              <li><span class="status status--fresh">Fresh</span><span class="key__text">4+ days</span></li>
+              <li><span class="status status--soon">Use soon</span><span class="key__text">2–3 days</span></li>
+              <li><span class="status status--now">Use now</span><span class="key__text">0–1 days</span></li>
+              <li><span class="status status--expired">Expired</span><span class="key__text">past date</span></li>
+            </ul>
+          </div>
+          <ul id="list" class="item-list"></ul>
+          <div id="empty" class="empty empty--compact">
+            <img class="empty__art" src="logo-apple.png" alt="" width="600" height="487">
+            <p class="empty__title">Your fridge is empty</p>
+            <p class="empty__text">Add something you bought this week to start tracking it.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel cook" aria-labelledby="cook-title">
+        <div class="panel__header">
+          <h2 id="cook-title" class="panel__title">What can I make?</h2>
+          <p class="panel__hint">Tap the foods you want to cook with. We'll show recipes that use the most of them, starting with whatever's about to go off.</p>
+        </div>
+        <div id="chips" class="chips" role="group" aria-label="Foods to cook with"></div>
+        <button id="ideas-btn" class="btn btn--primary btn--block"><span id="ideas-btn-label">Find recipes</span></button>
+        <p id="ideas-status" class="visually-hidden" role="status" aria-live="polite"></p>
+        <div id="ideas" class="ideas"></div>
+      </section>
+    </main>
+
+    <section id="donate" class="donate" aria-labelledby="donate-title">
+      <div class="donate__art" data-art="bag"></div>
+      <div class="donate__text">
+        <h2 id="donate-title" class="donate__title">Won't get to it in time? Donate it.</h2>
+        <p>Food banks take sealed food that's still in date. Community fridges and neighbors can use fresh or opened food too.</p>
+      </div>
+      <ul class="link-list donate__links"></ul>
+    </section>
+
+    <footer class="site-footer">
+      <p>Money saved is a rough guess unless you add a price. Recipes from <a href="https://www.themealdb.com" target="_blank" rel="noopener">TheMealDB</a>. Barcode data from <a href="https://world.openfoodfacts.org" target="_blank" rel="noopener">Open Food Facts</a>.</p>
+    </footer>
+  </div>
+
+  <dialog id="sheet" class="dialog" aria-labelledby="sheet-title">
+    <div class="dialog__bar">
+      <button class="btn btn--icon dialog__close" id="sheet-close" aria-label="Close"><span data-icon="x"></span></button>
+    </div>
+    <div id="sheet-body"></div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite">
+    <span id="toast-text"></span>
+    <button type="button" id="toast-action" class="toast__action" hidden></button>
+  </div>
+
+  <script src="food.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
