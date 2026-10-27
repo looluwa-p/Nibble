@@ -1,0 +1,239 @@
+html {
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #fff8f0;
+    color: #333;
+    margin: 0;
+}
+
+.wrap {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: white;
+    text-align: center;
+    padding: 15px;
+    transition: padding 0.3s;
+}
+
+.logo {
+    height: 80px;
+    margin: 0 auto 8px;
+    display: block;
+    transition: height 0.3s;
+}
+
+header.small-header {
+    padding: 6px;
+}
+
+header.small-header .logo {
+    height: 35px;
+    margin-bottom: 4px;
+}
+
+nav a {
+    color: #2e8b57;
+    font-weight: bold;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+#hero {
+    background: #fdebdf;
+    padding: 185px 0 20px;
+}
+
+h1 {
+    color: #c24a1a;
+    text-align: center;
+    margin-top: 0;
+}
+
+h2 {
+    color: #2e8b57;
+    margin-top: 0;
+}
+
+.intro {
+    text-align: center;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.stats b {
+    font-size: 26px;
+    color: #2e8b57;
+}
+
+#msg {
+    color: #2e8b57;
+    font-weight: bold;
+    text-align: center;
+}
+
+.box {
+    position: relative;
+    background: white;
+    border: 2px solid #2e8b57;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px 0;
+}
+
+.side {
+    display: none;
+    position: absolute;
+    top: 20px;
+    width: 210px;
+}
+
+.side.left {
+    left: -240px;
+    transform: rotate(-10deg);
+}
+
+.side.right {
+    right: -240px;
+    transform: rotate(10deg);
+}
+
+@media (min-width: 1320px) {
+    .side {
+        display: block;
+    }
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input {
+    padding: 5px;
+}
+
+button, .btn {
+    background: #f07243;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+button:hover, .btn:hover {
+    background: #c24a1a;
+}
+
+.used {
+    background: #2e8b57;
+}
+
+.used:hover {
+    background: #1f6b41;
+}
+
+#list li {
+    margin: 8px 0;
+}
+
+.expired { color: gray; }
+.now { color: red; }
+.soon { color: orange; }
+.fresh { color: green; }
+
+#chips label {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.recipes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.recipe {
+    width: 170px;
+}
+
+.recipe img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.recipe .btn {
+    display: inline-block;
+    margin-top: 5px;
+}
+
+.small {
+    font-size: 14px;
+    color: #777;
+}
+
+.wave {
+    display: block;
+    width: 100%;
+    height: 50px;
+    margin-bottom: -1px;
+}
+
+.wave-hero {
+    fill: #fdebdf;
+    margin-top: -1px;
+}
+
+.wave-green {
+    fill: #e4f3e9;
+}
+
+.wave-dark {
+    background: #e4f3e9;
+    fill: #2e8b57;
+}
+
+#donate {
+    background: #e4f3e9;
+    padding: 10px 0 30px;
+}
+
+#donate a {
+    color: #c24a1a;
+    font-weight: bold;
+}
+
+#donate li {
+    margin: 6px 0;
+}
+
+footer {
+    background: #2e8b57;
+    color: white;
+    text-align: center;
+    padding: 10px 15px 20px;
+    font-size: 14px;
+}

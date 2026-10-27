@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nibble</title>
+  <link rel="icon" href="logo.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header id="header">
+    <img src="logo-wordmark.png" alt="Nibble" class="logo">
+    <nav>
+      <a href="#fridge">My Fridge</a>
+      <a href="#recipes">Recipes</a>
+      <a href="#donate">Donate</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="wrap">
+      <h1>Use your food before it goes bad!</h1>
+      <p class="intro">Keep track of what's in your fridge, find recipes that use it up, and donate what you can't eat.</p>
+
+      <div class="stats">
+        <div><b id="stat-items">0</b><br>foods saved</div>
+        <div><b id="stat-money">$0</b><br>money saved</div>
+        <div><b id="stat-weight">0 lb</b><br>food rescued</div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="wave wave-hero" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 0V25C300 55 650 55 950 30S1300 5 1440 20V0z"/></svg>
+
+  <main class="wrap">
+    <p id="msg"></p>
+
+    <div class="box" id="fridge">
+      <img src="logo%20(2).png" alt="" class="side left">
+      <img src="logo%20(3).png" alt="" class="side right">
+      <h2>My Fridge</h2>
+      <form id="add-form">
+        <label>Food <input id="name" placeholder="e.g. potatoes" required></label>
+        <label>Expires <input id="expiry" type="date" required></label>
+        <label>Price (optional) <input id="price" type="number" min="0" step="0.01" placeholder="0.00"></label>
+        <button>Add to fridge</button>
+      </form>
+      <ul id="list"></ul>
+      <p id="empty" class="small">Your fridge is empty. Add something!</p>
+    </div>
+
+    <div class="box" id="recipes">
+      <h2>What can I make?</h2>
+      <p class="small">Pick the foods you want to cook with:</p>
+      <div id="chips"></div>
+      <button id="ideas-btn">Find recipes</button>
+      <div id="ideas"></div>
+    </div>
+  </main>
+
+  <svg class="wave wave-green" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 30C240 0 480 60 720 30S1200 0 1440 30V60H0z"/></svg>
+
+  <section id="donate">
+    <div class="wrap">
+      <h2>Can't eat it in time? Donate it!</h2>
+      <p>Food banks take sealed food that's still in date. Community fridges and neighbors can use fresh or opened food too.</p>
+      <ul>
+        <li><a href="https://www.google.com/maps/search/food+bank+near+me" target="_blank">Find a food bank near me</a></li>
+        <li><a href="https://www.google.com/maps/search/community+fridge+near+me" target="_blank">Find a community fridge</a></li>
+        <li><a href="https://www.feedingamerica.org/find-your-local-foodbank" target="_blank">Feeding America food bank finder</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <svg class="wave wave-dark" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 20C300 60 600 50 900 25S1300 10 1440 30V60H0z"/></svg>
+
+  <footer>
+    <p>Money saved is a guess unless you add a price. Recipes from TheMealDB.</p>
+  </footer>
+
+  <script src="food.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
